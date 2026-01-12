@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>xbt.energy | Bitcoin is Based on Energy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, monospace; }
+        body {
+            background: linear-gradient(135deg, #111111 0%, #1a0d00 100%);
+            color: #f0e6d2;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(255, 153, 0, 0.2) 0%, transparent 25%),
+                radial-gradient(circle at 90% 80%, rgba(247, 215, 148, 0.15) 0%, transparent 25%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text x="50" y="50" font-size="6" fill="rgba(255,153,0,0.03)" text-anchor="middle" dominant-baseline="middle">₿</text></svg>');
+            z-index: -1;
+        }
+        @keyframes glow { 0%, 100% { text-shadow: 0 0 10px #ff9900, 0 0 20px #ff9900; } 50% { text-shadow: 0 0 20px #ffcc00, 0 0 40px #ff9900; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes priceGlow { 0%, 100% { text-shadow: 0 0 15px #ff9900, 0 0 30px #ff9900; } 50% { text-shadow: 0 0 25px #ffcc00, 0 0 50px #ff9900; } }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.03); } 100% { transform: scale(1); } }
+
+        header {
+            padding: 2.5rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 153, 0, 0.3);
+            animation: fadeInUp 0.8s ease-out;
+        }
+        .domain {
+            font-size: 4.2rem;
+            font-weight: 900;
+            margin-bottom: 0.3rem;
+            color: #f7931a;
+            animation: glow 3s ease-in-out infinite;
+            letter-spacing: -2px;
+        }
+        .xbt-subtitle {
+            font-size: 1.2rem;
+            color: #ffcc77;
+            background: rgba(247, 147, 26, 0.1);
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(247, 147, 26, 0.4);
+        }
+        .tagline {
+            font-size: 1.3rem;
+            color: #d4b998;
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        main {
+            flex: 1;
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+        .concept-box, .cta-box {
+            background: rgba(30, 20, 10, 0.75);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 153, 0, 0.25);
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        .concept-box::before, .cta-box::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 4px;
+            background: linear-gradient(90deg, #f7931a, #ffcc00);
+        }
+        .concept-box:hover, .cta-box:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 204, 0, 0.5);
+            box-shadow: 0 20px 40px rgba(247, 147, 26, 0.2);
+        }
+        .concept-box h2, .cta-box h2 {
+            font-size: 1.9rem;
+            margin-bottom: 1.5rem;
+            color: #ffcc00;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .quote {
+            font-style: italic;
+            font-size: 1.25rem;
+            color: #ffddaa;
+            border-left: 4px solid #f7931a;
+            padding-left: 1.3rem;
+            margin: 1.8rem 0;
+            line-height: 1.6;
+        }
+        .attribution { text-align: right; color: #ffb366; font-weight: bold; margin-bottom: 2rem; }
+
+        .tech-specs { margin: 2rem 0; }
+        .spec-item {
+            background: rgba(60, 40, 20, 0.5);
+            margin-bottom: 1rem;
+            padding: 1.2rem;
+            border-radius: 10px;
+            border-left: 4px solid #f7931a;
+        }
+        .spec-item strong { color: #ffcc66; display: block; margin-bottom: 0.3rem; }
+        .applications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .app-item {
+            background: rgba(247, 147, 26, 0.08);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid rgba(247, 147, 26, 0.2);
+            transition: all 0.3s;
+        }
+        .app-item:hover {
+            background: rgba(247, 147, 26, 0.15);
+            border-color: #f7931a;
+            transform: scale(1.05);
+        }
+        .app-item i { color: #ff9900; margin-bottom: 0.5rem; display: block; font-size: 1.5rem; }
+
+        /* 价格区域样式 - 更新 */
+        .price-section {
+            background: linear-gradient(90deg, rgba(150, 75, 0, 0.8), rgba(255, 153, 0, 0.8));
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2.5rem 0;
+            text-align: center;
+            border: 2px solid rgba(255, 204, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+            animation: pulse 4s ease-in-out infinite;
+        }
+        .price-section::before {
+            content: 'PREMIUM';
+            position: absolute;
+            top: 10px;
+            right: -30px;
+            background: #ffcc00;
+            color: #1a0d00;
+            padding: 5px 40px;
+            transform: rotate(45deg);
+            font-weight: bold;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+        .full-price {
+            font-size: 3.8rem;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255, 153, 0, 0.8);
+            animation: priceGlow 2s ease-in-out infinite;
+            margin: 0.5rem 0;
+        }
+        .price-currency {
+            font-size: 2rem;
+            vertical-align: top;
+            color: #ffddbb;
+        }
+        .price-note {
+            font-size: 0.9rem;
+            color: #ffddbb;
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+        .payment-plan { 
+            color: #ffffff; 
+            margin-top: 1rem; 
+            font-size: 1.2rem;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 204, 0, 0.3);
+        }
+        .highlight { 
+            color: #ffcc00; 
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+        .payment-breakdown {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .payment-item {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 153, 0, 0.3);
+        }
+        .payment-label {
+            font-size: 0.9rem;
+            color: #d4b998;
+            margin-bottom: 0.3rem;
+        }
+        .payment-amount {
+            font-size: 1.5rem;
+            color: #ffcc00;
+            font-weight: bold;
+        }
+        
+        .contact-email {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.2rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #f7931a;
+        }
+        .contact-email a {
+            color: #ffcc00;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 1.1rem;
+            word-break: break-all;
+        }
+        .contact-email a:hover { text-decoration: underline; color: #ff9900; }
+        .cta-button {
+            display: block;
+            width: 100%;
+            padding: 1.4rem;
+            background: linear-gradient(90deg, #f7931a, #ffcc00);
+            color: #1a0d00;
+            text-align: center;
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: 800;
+            border-radius: 10px;
+            margin-top: 1.5rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .cta-button:hover {
+            background: linear-gradient(90deg, #ffcc00, #f7931a);
+            box-shadow: 0 0 30px rgba(255, 153, 0, 0.7);
+            letter-spacing: 1px;
+            transform: translateY(-3px);
+        }
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        .badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #d4b998;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #8c7c6c;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 153, 0, 0.1);
+            margin-top: 2rem;
+        }
+        .footer-links a {
+            color: #f7931a;
+            margin: 0 12px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover { color: #ffcc00; text-decoration: underline; }
+
+        @media (max-width: 900px) {
+            main { grid-template-columns: 1fr; gap: 2.5rem; }
+            .domain { font-size: 3.3rem; }
+            .payment-breakdown { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 600px) {
+            .domain { font-size: 2.6rem; }
+            .tagline { font-size: 1.1rem; }
+            .concept-box, .cta-box { padding: 1.8rem; }
+            .full-price { font-size: 2.8rem; }
+            .applications-grid { grid-template-columns: 1fr 1fr; }
+            .price-section::before { font-size: 0.7rem; right: -35px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 class="domain">xbt.energy</h1>
+        <div class="xbt-subtitle">XBT = Official ISO 4217 Code for Bitcoin (BTC)</div>
+        <p class="tagline">The definitive domain for Bitcoin's physical foundation. Where cryptographic security meets raw power.</p>
+    </header>
+
+    <main>
+        <section class="concept-box">
+            <h2><i class="fas fa-link"></i> The Fundamental Link</h2>
+            <p class="quote">"Energy is the true currency. Bitcoin is based on energy."</p>
+            <p class="attribution">— Elon Musk</p>
+            <p>This domain encapsulates the core truth of Bitcoin: its security, value, and very existence are <strong>backed by physical energy</strong>. Proof-of-Work turns electricity into immutable truth.</p>
+
+            <div class="tech-specs">
+                <h3><i class="fas fa-cog"></i> Domain Significance</h3>
+                <div class="spec-item">
+                    <strong>Ultra-Short & Precise</strong>
+                    Just 7 characters. XBT is the formal, institutional code for Bitcoin, giving this domain professional weight.
+                </div>
+                <div class="spec-item">
+                    <strong>Conceptual Perfection</strong>
+                    Directly links the asset (XBT) to its foundational resource (energy). It's a complete statement.
+                </div>
+                <div class="spec-item">
+                    <strong>Premium Crypto Asset</strong>
+                    One of the most valuable combinations in the digital asset space. .energy domains are scarce and XBT is globally recognized.
+                </div>
+            </div>
+
+            <h3><i class="fas fa-rocket"></i> Built For</h3>
+            <div class="applications-grid">
+                <div class="app-item"><i class="fas fa-hard-hat"></i> Bitcoin Mining Pools</div>
+                <div class="app-item"><i class="fas fa-solar-panel"></i> Green/ Renewable Mining</div>
+                <div class="app-item"><i class="fas fa-bolt"></i> Energy-Backed Crypto Assets</div>
+                <div class="app-item"><i class="fas fa-chart-network"></i> PoW Research & Analytics</div>
+                <div class="app-item"><i class="fas fa-fire"></i> Stranded Energy Projects</div>
+                <div class="app-item"><i class="fas fa-university"></i> Crypto-Energy Education</div>
+            </div>
+        </section>
+
+        <section class="cta-box">
+            <h2><i class="fas fa-digital-tachograph"></i> Claim the Nexus</h2>
+            <p>Own the digital property that sits at the absolute intersection of Bitcoin and Energy. This is more than a domain; it's a manifesto and a premium digital asset.</p>
+
+            <div class="price-section">
+                <div class="full-price"><span class="price-currency">$</span>33,000</div>
+                <p class="price-note">Premium Investment-Grade Digital Asset</p>
+                
+                <div class="payment-plan">
+                    <p>Flexible acquisition: <span class="highlight">3 payments of $11,000 each</span></p>
+                    <p><em>No down payment required • Start using immediately • Full ownership upon final payment</em></p>
+                </div>
+                
+                <div class="payment-breakdown">
+                    <div class="payment-item">
+                        <div class="payment-label">Payment 1</div>
+                        <div class="payment-amount">$11,000</div>
+                    </div>
+                    <div class="payment-item">
+                        <div class="payment-label">Payment 2</div>
+                        <div class="payment-amount">$11,000</div>
+                    </div>
+                    <div class="payment-item">
+                        <div class="payment-label">Payment 3</div>
+                        <div class="payment-amount">$11,000</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-email">
+                <p><strong>Direct inquiries & serious offers:</strong> Contact the domain owner directly for questions or private offers:</p>
+                <p><i class="fas fa-envelope"></i> Email: <a href="mailto:joshua369x@gmail.com">joshua369x@gmail.com</a></p>
+            </div>
+
+            <p><strong>Included with purchase:</strong> Free transfer assistance, secure escrow, and premium domain concierge service via Spaceship.com.</p>
+
+            <a href="https://www.spaceship.com/domains/xbt.energy" class="cta-button" target="_blank">
+                <i class="fas fa-bolt"></i> ACQUIRE THIS PREMIUM DOMAIN ON SPACESHIP
+            </a>
+
+            <div class="trust-badges">
+                <div class="badge"><i class="fas fa-lock"></i> Secure Escrow</div>
+                <div class="badge"><i class="fas fa-truck-loading"></i> Instant Transfer</div>
+                <div class="badge"><i class="fas fa-award"></i> Premium Crypto Asset</div>
+                <div class="badge"><i class="fas fa-chart-line"></i> Investment Grade</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 xbt.energy | This premium domain is listed for sale via Spaceship.com. Quotes are used for conceptual inspiration.</p>
+        <p class="footer-links">
+            <a href="#privacy">Privacy</a> |
+            <a href="#terms">Terms</a> |
+            <a href="mailto:joshua369x@gmail.com">Contact Domain Owner</a>
+        </p>
+    </footer>
+</body>
+</html>
