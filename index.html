@@ -3,412 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>xbt.energy | Bitcoin is Based on Energy</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- SEO: Title Tag -->
+    <title>xbt.energy | Institutional Bitcoin, Valued by Energy</title>
+    
+    <!-- SEO: Meta Description -->
+    <meta name="description" content="xbt.energy is the definitive brand for the thesis that Bitcoin (XBT) is a currency based on energy. The home for institutional-grade Bitcoin and energy ventures.">
+    
+    <!-- SEO: Keywords -->
+    <meta name="keywords" content="xbt, btc, bitcoin, energy, energy currency, Elon Musk, AI, Proof of Work, ISO 4217, bitcoin mining, institutional crypto">
+
+    <!-- Social Media/Open Graph Tags -->
+    <meta property="og:title" content="xbt.energy | Institutional Bitcoin, Valued by Energy">
+    <meta property="og:description" content="Based on the thesis that 'Energy is the true currency. Bitcoin is based on energy.' This is the brand for the future of digital value.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://xbt.energy">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- SEO: JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "xbt.energy | Institutional Bitcoin, Valued by Energy",
+      "description": "The landing page for the premium domain xbt.energy, representing the concept of Bitcoin as an energy-based currency.",
+      "url": "https://xbt.energy",
+      "mainEntity": {
+        "@type": "Product",
+        "name": "The domain name xbt.energy",
+        "description": "The definitive brand for an institutional venture at the intersection of Bitcoin (XBT) and the energy markets.",
+        "sku": "xbt.energy",
+        "offers": {
+          "@type": "Offer",
+          "price": "7200.00",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "url": "https://www.spaceship.com/s/buy/xbt.energy/jHHjhPql6XQZ8oEq"
+        }
+      }
+    }
+    </script>
+    
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, monospace; }
+        :root {
+            --bg-dark: #000000;
+            --bg-darker: #0a0a0a;
+            --text-primary: #f5f5f5;
+            --text-secondary: #bdbdbd;
+            --accent-orange: #f7931a; /* Bitcoin Orange */
+            --accent-blue: #00bfff; /* Electric Energy Blue */
+            --border-color: rgba(247, 147, 26, 0.2);
+            --card-bg: rgba(247, 147, 26, 0.05);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
-            background: linear-gradient(135deg, #111111 0%, #1a0d00 100%);
-            color: #f0e6d2;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
             overflow-x: hidden;
-            position: relative;
-        }
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: 
-                radial-gradient(circle at 10% 20%, rgba(255, 153, 0, 0.2) 0%, transparent 25%),
-                radial-gradient(circle at 90% 80%, rgba(247, 215, 148, 0.15) 0%, transparent 25%),
-                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text x="50" y="50" font-size="6" fill="rgba(255,153,0,0.03)" text-anchor="middle" dominant-baseline="middle">₿</text></svg>');
-            z-index: -1;
-        }
-        @keyframes glow { 0%, 100% { text-shadow: 0 0 10px #ff9900, 0 0 20px #ff9900; } 50% { text-shadow: 0 0 20px #ffcc00, 0 0 40px #ff9900; } }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes priceGlow { 0%, 100% { text-shadow: 0 0 15px #ff9900, 0 0 30px #ff9900; } 50% { text-shadow: 0 0 25px #ffcc00, 0 0 50px #ff9900; } }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.03); } 100% { transform: scale(1); } }
-
-        header {
-            padding: 2.5rem 2rem;
-            text-align: center;
-            border-bottom: 1px solid rgba(255, 153, 0, 0.3);
-            animation: fadeInUp 0.8s ease-out;
-        }
-        .domain {
-            font-size: 4.2rem;
-            font-weight: 900;
-            margin-bottom: 0.3rem;
-            color: #f7931a;
-            animation: glow 3s ease-in-out infinite;
-            letter-spacing: -2px;
-        }
-        .xbt-subtitle {
-            font-size: 1.2rem;
-            color: #ffcc77;
-            background: rgba(247, 147, 26, 0.1);
-            display: inline-block;
-            padding: 0.3rem 1rem;
-            border-radius: 20px;
-            margin-bottom: 1rem;
-            border: 1px solid rgba(247, 147, 26, 0.4);
-        }
-        .tagline {
-            font-size: 1.3rem;
-            color: #d4b998;
-            font-weight: 300;
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.5;
-        }
-
-        main {
-            flex: 1;
-            max-width: 1200px;
-            margin: 3rem auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            animation: fadeInUp 1s ease-out 0.2s both;
-        }
-        .concept-box, .cta-box {
-            background: rgba(30, 20, 10, 0.75);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 153, 0, 0.25);
-            border-radius: 16px;
-            padding: 2.5rem;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
-            transition: all 0.4s;
-            position: relative;
-            overflow: hidden;
-        }
-        .concept-box::before, .cta-box::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; height: 4px;
-            background: linear-gradient(90deg, #f7931a, #ffcc00);
-        }
-        .concept-box:hover, .cta-box:hover {
-            transform: translateY(-8px);
-            border-color: rgba(255, 204, 0, 0.5);
-            box-shadow: 0 20px 40px rgba(247, 147, 26, 0.2);
-        }
-        .concept-box h2, .cta-box h2 {
-            font-size: 1.9rem;
-            margin-bottom: 1.5rem;
-            color: #ffcc00;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .quote {
-            font-style: italic;
-            font-size: 1.25rem;
-            color: #ffddaa;
-            border-left: 4px solid #f7931a;
-            padding-left: 1.3rem;
-            margin: 1.8rem 0;
-            line-height: 1.6;
-        }
-        .attribution { text-align: right; color: #ffb366; font-weight: bold; margin-bottom: 2rem; }
-
-        .tech-specs { margin: 2rem 0; }
-        .spec-item {
-            background: rgba(60, 40, 20, 0.5);
-            margin-bottom: 1rem;
-            padding: 1.2rem;
-            border-radius: 10px;
-            border-left: 4px solid #f7931a;
-        }
-        .spec-item strong { color: #ffcc66; display: block; margin-bottom: 0.3rem; }
-        .applications-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-        .app-item {
-            background: rgba(247, 147, 26, 0.08);
-            padding: 1rem;
-            border-radius: 8px;
-            text-align: center;
-            border: 1px solid rgba(247, 147, 26, 0.2);
-            transition: all 0.3s;
-        }
-        .app-item:hover {
-            background: rgba(247, 147, 26, 0.15);
-            border-color: #f7931a;
-            transform: scale(1.05);
-        }
-        .app-item i { color: #ff9900; margin-bottom: 0.5rem; display: block; font-size: 1.5rem; }
-
-        /* 价格区域样式 - 更新 */
-        .price-section {
-            background: linear-gradient(90deg, rgba(150, 75, 0, 0.8), rgba(255, 153, 0, 0.8));
-            padding: 2rem;
-            border-radius: 15px;
-            margin: 2.5rem 0;
-            text-align: center;
-            border: 2px solid rgba(255, 204, 0, 0.5);
-            position: relative;
-            overflow: hidden;
-            animation: pulse 4s ease-in-out infinite;
-        }
-        .price-section::before {
-            content: 'PREMIUM';
-            position: absolute;
-            top: 10px;
-            right: -30px;
-            background: #ffcc00;
-            color: #1a0d00;
-            padding: 5px 40px;
-            transform: rotate(45deg);
-            font-weight: bold;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-        }
-        .full-price {
-            font-size: 3.8rem;
-            font-weight: 900;
-            color: #ffffff;
-            text-shadow: 0 0 10px rgba(255, 153, 0, 0.8);
-            animation: priceGlow 2s ease-in-out infinite;
-            margin: 0.5rem 0;
-        }
-        .price-currency {
-            font-size: 2rem;
-            vertical-align: top;
-            color: #ffddbb;
-        }
-        .price-note {
-            font-size: 0.9rem;
-            color: #ffddbb;
-            font-style: italic;
-            margin-top: 0.5rem;
-        }
-        .payment-plan { 
-            color: #ffffff; 
-            margin-top: 1rem; 
-            font-size: 1.2rem;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 1rem;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 204, 0, 0.3);
-        }
-        .highlight { 
-            color: #ffcc00; 
-            font-weight: bold;
-            font-size: 1.3rem;
-        }
-        .payment-breakdown {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-        .payment-item {
-            background: rgba(0, 0, 0, 0.4);
-            padding: 1rem;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 153, 0, 0.3);
-        }
-        .payment-label {
-            font-size: 0.9rem;
-            color: #d4b998;
-            margin-bottom: 0.3rem;
-        }
-        .payment-amount {
-            font-size: 1.5rem;
-            color: #ffcc00;
-            font-weight: bold;
+            min-height: 100vh;
         }
         
-        .contact-email {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 1.2rem;
-            border-radius: 10px;
-            margin: 1.5rem 0;
-            border-left: 4px solid #f7931a;
-        }
-        .contact-email a {
-            color: #ffcc00;
-            font-weight: bold;
-            text-decoration: none;
-            font-size: 1.1rem;
-            word-break: break-all;
-        }
-        .contact-email a:hover { text-decoration: underline; color: #ff9900; }
-        .cta-button {
-            display: block;
-            width: 100%;
-            padding: 1.4rem;
-            background: linear-gradient(90deg, #f7931a, #ffcc00);
-            color: #1a0d00;
-            text-align: center;
-            text-decoration: none;
-            font-size: 1.3rem;
-            font-weight: 800;
-            border-radius: 10px;
-            margin-top: 1.5rem;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-        .cta-button:hover {
-            background: linear-gradient(90deg, #ffcc00, #f7931a);
-            box-shadow: 0 0 30px rgba(255, 153, 0, 0.7);
-            letter-spacing: 1px;
-            transform: translateY(-3px);
-        }
-        .trust-badges {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-        .badge {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: #d4b998;
-            font-size: 0.9rem;
+        #particles-js { position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: -1; }
+
+        /* Distinct Animation for 'xbt' */
+        @keyframes xbt-pulse {
+          0%, 100% { text-shadow: 0 0 7px var(--accent-orange), 0 0 15px var(--accent-orange); opacity: 0.9; }
+          50% { text-shadow: 0 0 15px var(--accent-orange), 0 0 30px var(--accent-orange); opacity: 1; }
         }
 
-        footer {
-            text-align: center;
-            padding: 2rem;
-            color: #8c7c6c;
-            font-size: 0.9rem;
-            border-top: 1px solid rgba(255, 153, 0, 0.1);
-            margin-top: 2rem;
+        /* Distinct Animation for 'energy' */
+        @keyframes energy-flicker {
+          0%   { text-shadow: 0 0 5px var(--accent-blue); opacity: 1; }
+          20%  { text-shadow: 0 0 10px var(--accent-blue); opacity: 0.8; }
+          22%  { text-shadow: 0 0 5px var(--accent-blue); opacity: 1; }
+          60%  { text-shadow: 0 0 15px var(--accent-blue); opacity: 1; }
+          63%  { opacity: 0.7; }
+          100% { text-shadow: 0 0 5px var(--accent-blue); opacity: 1; }
         }
-        .footer-links a {
-            color: #f7931a;
-            margin: 0 12px;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        .footer-links a:hover { color: #ffcc00; text-decoration: underline; }
 
-        @media (max-width: 900px) {
-            main { grid-template-columns: 1fr; gap: 2.5rem; }
-            .domain { font-size: 3.3rem; }
-            .payment-breakdown { grid-template-columns: 1fr; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 6rem 2rem 4rem; position: relative; z-index: 2; }
+        header { text-align: center; margin-bottom: 4rem; }
+        .logo {
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            font-size: clamp(4rem, 12vw, 8rem);
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
         }
-        @media (max-width: 600px) {
-            .domain { font-size: 2.6rem; }
-            .tagline { font-size: 1.1rem; }
-            .concept-box, .cta-box { padding: 1.8rem; }
-            .full-price { font-size: 2.8rem; }
-            .applications-grid { grid-template-columns: 1fr 1fr; }
-            .price-section::before { font-size: 0.7rem; right: -35px; }
+        .dynamic-main, .dynamic-tld { display: inline-block; }
+        .dynamic-main {
+            background: linear-gradient(135deg, #ffffff, #f0e0d0);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            animation: xbt-pulse 5s ease-in-out infinite;
+        }
+        .dynamic-tld {
+            background: linear-gradient(135deg, var(--accent-blue), #90ee90);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            animation: energy-flicker 3s linear infinite;
+        }
+        .iso-definition {
+            display: inline-block;
+            margin: 1.5rem auto 0;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-secondary);
+            font-family: 'Space Mono', monospace;
+            font-size: clamp(0.8rem, 2vw, 1rem);
+            background: var(--card-bg);
+        }
+        
+        .quote-section { max-width: 800px; margin: 0 auto 6rem; padding: 2rem; text-align: center; }
+        .quote { font-family: 'Space Mono', monospace; font-size: clamp(1.1rem, 2.5vw, 1.4rem); color: var(--text-primary); line-height: 1.7; }
+        .quote span {
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-blue));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .attribution { display: block; margin-top: 1rem; font-family: 'Inter', sans-serif; font-size: 1rem; color: var(--text-secondary); }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; margin-bottom: 6rem; }
+        .card { background: var(--card-bg); border: 1px solid var(--border-color); padding: 2.5rem; border-radius: 12px; transition: all 0.3s ease; }
+        .card:hover { transform: translateY(-8px); border-color: var(--accent-orange); box-shadow: 0 10px 40px rgba(247, 147, 26, 0.15); }
+        .card-title { font-family: 'Space Mono', monospace; font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem; color: var(--accent-orange); }
+        .card-desc { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; }
+        
+        .cta { max-width: 700px; margin: 0 auto 5rem; text-align: center; padding: 4rem; background: linear-gradient(145deg, #0a0500, #1a1000); border: 1px solid var(--border-color); border-radius: 16px; }
+        .cta-content { position: relative; z-index: 1; }
+        .price { font-family: 'Space Mono', monospace; font-size: 3.5rem; font-weight: 700; margin: 1.5rem 0 0.5rem; color: var(--text-primary); }
+        .price-sub { color: var(--text-secondary); font-size: 1rem; margin-bottom: 2.5rem; }
+        .btn-container { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+        .btn { display: inline-block; color: #000; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1rem; padding: 1rem 2.5rem; text-decoration: none; border-radius: 8px; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease; border: none; cursor: pointer; }
+        .btn.primary { background: linear-gradient(135deg, var(--accent-orange), var(--accent-blue)); }
+        .btn.primary:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(247, 147, 26, 0.3); }
+        .btn.secondary { background: transparent; border: 2px solid var(--accent-orange); color: var(--accent-orange); }
+        .btn.secondary:hover { background: rgba(247, 147, 26, 0.1); transform: translateY(-2px); }
+        
+        footer { text-align: center; padding: 2rem; color: #555; font-size: 0.8rem; border-top: 1px solid rgba(255, 255, 255, 0.05); }
+        
+        /* Mobile Responsiveness Block */
+        @media (max-width: 768px) {
+            .container { padding: 4rem 1.5rem 3rem; }
+            .grid { grid-template-columns: 1fr; }
+            .cta { padding: 3rem 1.5rem; }
+            .price { font-size: 2.8rem; }
+            .btn { width: 100%; padding: 1.25rem 2rem; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1 class="domain">xbt.energy</h1>
-        <div class="xbt-subtitle">XBT = Official ISO 4217 Code for Bitcoin (BTC)</div>
-        <p class="tagline">The definitive domain for Bitcoin's physical foundation. Where cryptographic security meets raw power.</p>
-    </header>
+    <div id="particles-js"></div>
+    
+    <main class="container">
 
-    <main>
-        <section class="concept-box">
-            <h2><i class="fas fa-link"></i> The Fundamental Link</h2>
-            <p class="quote">"Energy is the true currency. Bitcoin is based on energy."</p>
-            <p class="attribution">— Elon Musk</p>
-            <p>This domain encapsulates the core truth of Bitcoin: its security, value, and very existence are <strong>backed by physical energy</strong>. Proof-of-Work turns electricity into immutable truth.</p>
+        <header>
+            <h1 class="logo">
+                <span class="dynamic-main">xbt</span><span class="dynamic-tld">.energy</span>
+            </h1>
+            <div class="iso-definition">XBT = Official ISO 4217 Code for Bitcoin (BTC)</div>
+        </header>
+        
+        <section class="quote-section">
+            <blockquote class="quote">
+                "Energy is the true currency. <span>Bitcoin is based on energy.</span>"
+            </blockquote>
+            <cite class="attribution">— First Principles Thesis (Inspired by Elon Musk)</cite>
+        </section>
 
-            <div class="tech-specs">
-                <h3><i class="fas fa-cog"></i> Domain Significance</h3>
-                <div class="spec-item">
-                    <strong>Ultra-Short & Precise</strong>
-                    Just 3 characters. XBT is the formal, institutional code for Bitcoin, giving this domain professional weight.
-                </div>
-                <div class="spec-item">
-                    <strong>Conceptual Perfection</strong>
-                    Directly links the asset (XBT) to its foundational resource (energy). It's a complete statement.
-                </div>
-                <div class="spec-item">
-                    <strong>Premium Crypto Asset</strong>
-                    One of the most valuable combinations in the digital asset space. .energy domains are scarce and XBT is globally recognized.
-                </div>
-            </div>
+        <section class="grid">
+            <div class="card"><h2 class="card-title">Institutional Mining</h2><p class="card-desc">The brand for large-scale, institutional-grade XBT mining operations, powered by stranded or renewable energy sources.</p></div>
+            <div class="card"><h2 class="card-title">Energy-Backed Derivatives</h2><p class="card-desc">A platform for financial products (ETFs, Futures) that price XBT against the physical cost of its energy production, not just market sentiment.</p></div>
+            <div class="card"><h2 class="card-title">Proof-of-Work Heating</h2><p class="card-desc">Ventures that use XBT miners for commercial and residential heating, turning a pure energy cost into a productive, yield-generating asset.</p></div>
+            <div class="card"><h2 class="card-title">Global Energy Arbitrage</h2><p class="card-desc">A platform for deploying mobile mining operations to capitalize on the cheapest sources of energy anywhere on the planet, in real-time.</p></div>
+            <div class="card"><h2 class="card-title">The XBT Energy Standard</h2><p class="card-desc">A research institute or standards body dedicated to defining the true energy value of Bitcoin, creating a "Joule Standard" for XBT.</p></div>
+            <div class="card"><h2 class="card-title">AI-Optimized Mining</h2><p class="card-desc">Using AI to optimize energy consumption and hash rate for mining farms, treating XBT as the native treasury asset for both energy and computation.</p></div>
+            <div class="card"><h2 class="card-title">Renewable Energy Monetization</h2><p class="card-desc">The definitive platform for solar and wind farms to instantly convert surplus or curtailed energy into a global monetary asset (XBT).</p></div>
+            <div class="card"><h2 class="card-title">The XBT Energy Index</h2><p class="card-desc">A financial data provider offering a real-time, institutional-grade index of Bitcoin's energy cost, efficiency, and network hashrate.</p></div>
+            <div class="card"><h2 class="card-title">Geopolitical Energy Strategy</h2><p class="card-desc">An advisory firm for nations and sovereign funds on acquiring energy assets to secure a strategic position in the future of XBT production.</p></div>
+        </section>
 
-            <h3><i class="fas fa-rocket"></i> Built For</h3>
-            <div class="applications-grid">
-                <div class="app-item"><i class="fas fa-hard-hat"></i> Bitcoin Mining Pools</div>
-                <div class="app-item"><i class="fas fa-solar-panel"></i> Green/ Renewable Mining</div>
-                <div class="app-item"><i class="fas fa-bolt"></i> Energy-Backed Crypto Assets</div>
-                <div class="app-item"><i class="fas fa-chart-network"></i> PoW Research & Analytics</div>
-                <div class="app-item"><i class="fas fa-fire"></i> Stranded Energy Projects</div>
-                <div class="app-item"><i class="fas fa-university"></i> Crypto-Energy Education</div>
+        <section class="cta">
+            <div class="cta-content">
+                <div style="font-size: 0.8rem; color: var(--accent-orange); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem;">Institutional Domain Asset</div>
+                <div class="price">$7,200 USD</div>
+                <div class="price-sub">3-Month Financing Available</div>
+                <div class="btn-container">
+                    <a href="https://www.spaceship.com/s/buy/xbt.energy/jHHjhPql6XQZ8oEq" target="_blank" rel="noopener noreferrer" class="btn primary">
+                        Acquire Now
+                    </a>
+                    <button class="btn secondary" onclick="copyEmail()">
+                        Contact
+                    </button>
+                </div>
             </div>
         </section>
 
-        <section class="cta-box">
-            <h2><i class="fas fa-digital-tachograph"></i> Claim the Nexus</h2>
-            <p>Own the digital property that sits at the absolute intersection of Bitcoin and Energy. This is more than a domain; it's a manifesto and a premium digital asset.</p>
-
-            <div class="price-section">
-                <div class="full-price"><span class="price-currency">$</span>33,000</div>
-                <p class="price-note">Premium Investment-Grade Digital Asset</p>
-                
-                <div class="payment-plan">
-                    <p>Flexible acquisition: <span class="highlight">3 payments of $11,000 each</span></p>
-                    <p><em>No down payment required • Start using immediately • Full ownership upon final payment</em></p>
-                </div>
-                
-                <div class="payment-breakdown">
-                    <div class="payment-item">
-                        <div class="payment-label">Payment 1</div>
-                        <div class="payment-amount">$11,000</div>
-                    </div>
-                    <div class="payment-item">
-                        <div class="payment-label">Payment 2</div>
-                        <div class="payment-amount">$11,000</div>
-                    </div>
-                    <div class="payment-item">
-                        <div class="payment-label">Payment 3</div>
-                        <div class="payment-amount">$11,000</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="contact-email">
-                <p><strong>Direct inquiries & serious offers:</strong> Contact the domain owner directly for questions or private offers:</p>
-                <p><i class="fas fa-envelope"></i> Email: <a href="mailto:joshua369x@gmail.com">joshua369x@gmail.com</a></p>
-            </div>
-
-            <p><strong>Included with purchase:</strong> Free transfer assistance, secure escrow, and premium domain concierge service via Spaceship.com.</p>
-
-            <a href="https://www.spaceship.com/domains/xbt.energy" class="cta-button" target="_blank">
-                <i class="fas fa-bolt"></i> ACQUIRE THIS PREMIUM DOMAIN ON SPACESHIP
-            </a>
-
-            <div class="trust-badges">
-                <div class="badge"><i class="fas fa-lock"></i> Secure Escrow</div>
-                <div class="badge"><i class="fas fa-truck-loading"></i> Instant Transfer</div>
-                <div class="badge"><i class="fas fa-award"></i> Premium Crypto Asset</div>
-                <div class="badge"><i class="fas fa-chart-line"></i> Investment Grade</div>
-            </div>
-        </section>
     </main>
 
     <footer>
-        <p>© 2026 xbt.energy | This premium domain is listed for sale via Spaceship.com. Quotes are used for conceptual inspiration.</p>
-        <p class="footer-links">
-            <a href="#privacy">Privacy</a> |
-            <a href="#terms">Terms</a> |
-            <a href="mailto:joshua369x@gmail.com">Contact Domain Owner</a>
-        </p>
+        <p>© 2026 xbt.energy - Where Physics and Finance Converge.</p>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const isMobile = window.innerWidth < 768;
+            
+            particlesJS('particles-js', {
+                particles: {
+                    number: { value: isMobile ? 50 : 100, density: { enable: true, value_area: 800 } },
+                    color: { value: ['#f7931a', '#ffffff', '#00bfff'] },
+                    shape: { type: 'circle' },
+                    opacity: { value: 0.6, random: true, anim: { enable: true, speed: 0.8, opacity_min: 0.1, sync: false } },
+                    size: { value: 2, random: true },
+                    line_linked: {
+                        enable: true,
+                        distance: isMobile ? 120 : 150,
+                        color: 'random',
+                        opacity: 0.1,
+                        width: 1
+                    },
+                    move: {
+                        enable: true,
+                        speed: isMobile ? 1 : 1.5,
+                        direction: 'none',
+                        random: true,
+                        straight: false,
+                        out_mode: 'out',
+                        bounce: false
+                    }
+                },
+                interactivity: {
+                    detect_on: 'canvas',
+                    events: { onhover: { enable: !isMobile, mode: 'grab' }, onclick: { enable: false }, resize: true },
+                    modes: { grab: { distance: 140, line_opacity: 0.3 } }
+                },
+                retina_detect: true
+            });
+        });
+
+        function copyEmail() {
+            navigator.clipboard.writeText('joshua369x@gmail.com').then(function() {
+                const contactBtn = document.querySelector('.btn.secondary');
+                const originalText = contactBtn.textContent;
+                contactBtn.textContent = 'Email Copied!';
+                contactBtn.style.color = 'var(--accent-blue)';
+                contactBtn.style.borderColor = 'var(--accent-blue)';
+                
+                setTimeout(function() {
+                    contactBtn.textContent = originalText;
+                    contactBtn.style.color = '';
+                    contactBtn.style.borderColor = '';
+                }, 2500);
+            }, function(err) {
+                console.error('Could not copy text: ', err);
+            });
+        }
+    </script>
+
 </body>
 </html>
